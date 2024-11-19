@@ -1,4 +1,4 @@
-package dev.exercise.imc;
+package dev.exercise.bmi;
 
 import org.junit.jupiter.api.Test;
 
