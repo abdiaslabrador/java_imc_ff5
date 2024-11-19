@@ -15,15 +15,19 @@ public class BmiView {
     }
 
     public void start(){
-        
+        showWelcome();
         double weight = askWeight();
         double height = askHeight();
         Person person = controller.createPerson(weight, height);
-        
+        showTable();
         showResults(controller.getBmiNumber(person), controller.getBmiClassification(height));
     }
 
-    
+    private  void showWelcome(){
+        System.out.println("-------------------------");
+        System.out.println("Welcome to BMI calculator");
+        System.out.println("-------------------------");
+    }
 
     private  double askWeight(){
         System.out.print("\nEnter your weight in kilograms: ");
@@ -40,5 +44,16 @@ public class BmiView {
         System.out.println("\nYour BMI is: " + clasification);
     }
 
-    
+    private  void showTable(){
+        System.out.println("\n=========================");
+        System.out.printf("\t BMI Result");
+        System.out.printf("\n16\t\tSevere thinness");
+        System.out.printf("\n16 - 17\t\tModerate thinness");
+        System.out.printf("\n17 - 18,5\tMild thinness");
+        System.out.printf("\n18,5 - 25\tNormal weight");
+        System.out.printf("\n25 - 30\t\tOverweight");
+        System.out.printf("\n30 - 35\t\tMild obesity");
+        System.out.printf("\n35 - 40\t\tModerate obesity");
+        System.out.printf("\n>= 40\t\tMorbid obesity");
+    }
 }
