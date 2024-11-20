@@ -11,7 +11,7 @@ public class BmiController {
         bmi = new BmiModel();
     }
 
-    public Person createPerson(double weight, double height){
+    public Person postCreatePerson(double weight, double height){
         Person person = new Person(weight, height);
         return person;
     }

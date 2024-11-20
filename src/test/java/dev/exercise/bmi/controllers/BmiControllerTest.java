@@ -24,15 +24,15 @@ public class BmiControllerTest {
 
     @Test
     void testCreatePerson() {
-        assertThat(controller.createPerson(weight, height), instanceOf(Person.class));
-        assertThat(controller.createPerson(weight, height).getWeight(), is(weight));
-        assertThat(controller.createPerson(weight, height).getHeight(), is(height));
+        assertThat(controller.postCreatePerson(weight, height), instanceOf(Person.class));
+        assertThat(controller.postCreatePerson(weight, height).getWeight(), is(weight));
+        assertThat(controller.postCreatePerson(weight, height).getHeight(), is(height));
     }
 
     @Test
     void testGetBmiNumber() {
         double bmiExpected = weight / (Math.pow(height, 2));
-        assertThat(bmiExpected, is(controller.getBmiNumber(controller.createPerson(weight, height))));
+        assertThat(bmiExpected, is(controller.getBmiNumber(controller.postCreatePerson(weight, height))));
     }
 
     @Test
