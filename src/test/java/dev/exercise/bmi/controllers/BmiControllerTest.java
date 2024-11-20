@@ -1,20 +1,50 @@
 package dev.exercise.bmi.controllers;
+import dev.exercise.bmi.models.Person;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class BmiControllerTest {
-    @Test
-    void testCreatePerson() {
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
 
+
+public class BmiControllerTest {
+
+    BmiController controller;
+    double weight = 75;
+    double height = 1.87;
+
+    @BeforeEach
+    public void setUp() {
+        controller = new BmiController();
+        weight = 75;
+        height = 1.87;
     }
 
     @Test
-    void testGetBmiClassification() {
-
+    void testCreatePerson() {
+        assertThat(controller.createPerson(weight, height), instanceOf(Person.class));
+        assertThat(controller.createPerson(weight, height).getWeight(), is(weight));
+        assertThat(controller.createPerson(weight, height).getHeight(), is(height));
     }
 
     @Test
     void testGetBmiNumber() {
+        double bmiExpected = weight / (Math.pow(height, 2));
+        assertThat(bmiExpected, is(controller.getBmiNumber(controller.createPerson(weight, height))));
+    }
 
+    @Test
+    void testGetBmiClassification() {
+        double bmiNumber = 15;
+        String bmiCategoryExpeceted = "Severe thinness";
+        assertThat(bmiCategoryExpeceted, is(controller.getBmiClassification(bmiNumber)));
+        bmiNumber = 50;
+        bmiCategoryExpeceted = "Morbid Obesity";
+        assertThat(bmiCategoryExpeceted, is(controller.getBmiClassification(bmiNumber)));
+        bmiNumber = 23;
+        bmiCategoryExpeceted = "Normal weight";
+        assertThat(bmiCategoryExpeceted, is(controller.getBmiClassification(bmiNumber)));
     }
 }
