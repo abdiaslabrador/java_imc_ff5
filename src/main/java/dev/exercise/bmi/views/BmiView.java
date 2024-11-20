@@ -7,44 +7,45 @@ import dev.exercise.bmi.models.Person;
 
 public class BmiView {
     
-    private static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner;
     private BmiController controller;
 
     public BmiView(){
         controller = new BmiController();
+        scanner = new Scanner(System.in);
     }
 
     public void start(){
         showWelcome();
-        double weight = askWeight();
-        double height = askHeight();
+        double weight = askWeight(scanner);
+        double height = askHeight(scanner);
         Person person = controller.createPerson(weight, height);
         showTable();
         showResults(controller.getBmiNumber(person), controller.getBmiClassification(height));
     }
 
-    private  void showWelcome(){
+    public  void showWelcome(){
         System.out.println("-------------------------");
         System.out.println("Welcome to BMI calculator");
         System.out.println("-------------------------");
     }
 
-    private  double askWeight(){
+    public  double askWeight(Scanner scanner){
         System.out.print("\nEnter your weight in kilograms: ");
         return scanner.nextDouble();
     }
 
-    private  double askHeight(){
+    public  double askHeight(Scanner scanner){
         System.out.print("\nEnter your height in meters: ");
         return scanner.nextDouble();
     }
 
-    private  void showResults(double bmi, String clasification){
+    public  void showResults(double bmi, String clasification){
         System.out.printf("\n\nYour BMI is: %.2f", bmi);
         System.out.println("\nYour BMI is: " + clasification);
     }
 
-    private  void showTable(){
+    public  void showTable(){
         System.out.println("\n=========================");
         System.out.printf("\t BMI Result");
         System.out.printf("\n16\t\tSevere thinness");

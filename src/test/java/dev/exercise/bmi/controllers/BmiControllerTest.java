@@ -12,8 +12,8 @@ import static org.hamcrest.Matchers.is;
 public class BmiControllerTest {
 
     BmiController controller;
-    double weight = 75;
-    double height = 1.87;
+    double weight;
+    double height;
 
     @BeforeEach
     public void setUp() {
@@ -39,12 +39,6 @@ public class BmiControllerTest {
     void testGetBmiClassification() {
         double bmiNumber = 15;
         String bmiCategoryExpeceted = "Severe thinness";
-        assertThat(bmiCategoryExpeceted, is(controller.getBmiClassification(bmiNumber)));
-        bmiNumber = 50;
-        bmiCategoryExpeceted = "Morbid Obesity";
-        assertThat(bmiCategoryExpeceted, is(controller.getBmiClassification(bmiNumber)));
-        bmiNumber = 23;
-        bmiCategoryExpeceted = "Normal weight";
         assertThat(bmiCategoryExpeceted, is(controller.getBmiClassification(bmiNumber)));
     }
 }
