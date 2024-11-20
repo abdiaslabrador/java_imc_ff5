@@ -21,7 +21,8 @@ public class BmiView {
         double height = askHeight(scanner);
         Person person = controller.createPerson(weight, height);
         showTable();
-        showResults(controller.getBmiNumber(person), controller.getBmiClassification(height));
+        double bmiNumb = controller.getBmiNumber(person);
+        showResults(bmiNumb, controller.getBmiClassification(bmiNumb));
     }
 
     public  void showWelcome(){
